@@ -1,0 +1,25 @@
+body {
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: 100px 1fr;
+    grid-template-areas:
+    "header"
+    "content";
+}
+
+#header {
+    color: white;
+    background-color: #1189cf;
+    display: grid;
+    grid-area: header;
+    align-items: center;
+}
+    
+#descr {
+    margin-left: 30px;
+}
+
+#content {
+    display: grid;
+    
+}
