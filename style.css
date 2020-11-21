@@ -4,7 +4,6 @@
 }
 
 body {
-    overflow: hidden;
     margin: 0;
     display: grid;
     grid-template-rows: 100px 1fr;
@@ -28,12 +27,17 @@ body {
     color: white;
     background-color: black;
     display: grid;
+    grid-template-columns: 1fr 1fr;
     grid-area: header;
     align-items: center;
 }
     
 #descr {
-    margin-left: 30px;
+    margin-left: 50px;
+}
+
+#logo {
+    justify-self: end;
 }
 
 #grid {
@@ -53,4 +57,27 @@ body {
     text-justify: center;
     border: solid;
     border-radius: 100px;
+}
+
+.fish {
+    font-size: 40px;
+    line-height: 200px;
+    width: 300px;
+    height: 400px;
+    border-radius: 20px;
+    border: solid;
+    display: grid;
+    grid-template-rows: 60px 200px 70px 70px;
+    grid-template-areas: 
+    "edRe"
+    "."
+    "."
+    ".";
+}
+
+.edRe {
+    font-size: 20px;
+    display: grid;
+    grid-template-columns: 150px 150px;
+    grid-area: edRe;
 }
