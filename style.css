@@ -12,6 +12,10 @@ body {
     "content";
 }
 
+.mainBlur {
+    filter: blur(2px);
+}
+
 .action {
     cursor: pointer;
     transform: scale(1);
@@ -20,7 +24,7 @@ body {
 
 .action:hover {
     transform: scale(1.1);
-    transition: transform .3s ease-in-out
+    transition: transform .3s ease-in-out;
 }
 
 #header {
@@ -71,8 +75,8 @@ body {
     grid-template-areas: 
     "edRe"
     "specSize"
-    "."
-    ".";
+    "baitMet"
+    "location";
 }
 
 .edRe {
@@ -107,8 +111,8 @@ body {
 }
 
 .specSize {
-    margin-top: 50px;
-    line-height: 100px;
+    margin-top: 30px;
+    line-height: auto;
     width: 100%;
     font-size: 30px;
     display: grid;
@@ -122,12 +126,42 @@ body {
 
 .species {
     width: 100%;
-    grid-area: "species";
+    grid-area: species;
     text-align: center;
 }
 
 .size {
     width: 100%;
-    grid-area: "size";
+    grid-area: size;
     text-align: center;
+}
+
+.baitMet {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 20px;
+    display: grid;
+    grid-area: baitMet;
+    grid-template-rows: 20px 20px;
+    grid-template-areas: 
+    "bait"
+    "method";
+}
+
+.bait {
+    width: 100%;
+    text-align: center;
+    grid-area: bait;
+}
+
+.method {
+    width: 100%;
+    text-align: center;
+    grid-area: method;
+}
+
+.location {
+    width: 100%;
+    text-align: center;
+    grid-area: location;
 }

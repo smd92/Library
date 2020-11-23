@@ -2,7 +2,7 @@
 
 let myCatches = [];
 
-//constructor function for new book objects
+//constructor function for new Fish objects
 function Fish(species, size, bait, location, method) {
     this.species = species
     this.size = size + "cm";
@@ -11,7 +11,7 @@ function Fish(species, size, bait, location, method) {
     this.method = method
 }
 
-//info about the book
+//info about the Fish
 Fish.prototype.info = function() {
     let infoArr = [];
     infoArr.push(this.species, this.size, this.bait, this.location, this.method);
@@ -28,6 +28,7 @@ function addFishToCatches(sp, s, b, l, m) {
 
 const grid = document.querySelector("#grid");
 const addFish = document.querySelector("#addFish");
+const body = document.querySelector("body");
 
 //initial grid
 if (myCatches.length < 1) {
@@ -45,14 +46,17 @@ function adjustGrid(columns, rows) {
 
 //open form for user input
 addFish.addEventListener(("click"), () => {
-  
+  body.className = "mainBlur";
+
 })
 
+//      TEST
 
 let testOne = addFishToCatches("Bachforelle", "35", "Trockenfliege", "Mangfall", "Fliegenfischen");
 let testTwo = addFishToCatches("Döbel", "50", "Nymphe", "Inn", "Fliegenfischen");
 let testThree = addFishToCatches("Hecht", "82", "Gummifisch", "Tegernsee", "Schleppfischen");
 
+//      END OF TEST
 
 //display myCatches items on page
 function displayCatches() {
@@ -105,11 +109,14 @@ function displayCatches() {
     baitMet.appendChild(method);
     
     //create info row -> location
-
+    let location = document.createElement("p");
+    location.className = "location";
+    location.textContent = item.location;
 
     newTile.appendChild(edRe);
     newTile.appendChild(specSize);
     newTile.appendChild(baitMet);
+    newTile.appendChild(location);
     grid.insertBefore(newTile, addFish);
   })
 }
