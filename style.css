@@ -12,8 +12,23 @@ body {
     "content";
 }
 
-.mainBlur {
+.mainBlurred {
     filter: blur(2px);
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 
+    ". . ."
+    ". form ."
+    ". . .";
+}
+
+.form {
+    z-index: 1;
+    width: 400px;
+    height: 400px;
+    grid-area: form;
 }
 
 .action {

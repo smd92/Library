@@ -46,8 +46,11 @@ function adjustGrid(columns, rows) {
 
 //open form for user input
 addFish.addEventListener(("click"), () => {
-  body.className = "mainBlur";
+  body.className = "mainBlurred";
 
+  let formDiv = document.createElement("div");
+  formDiv.className = "form";
+  body.appendChild(formDiv);
 })
 
 //      TEST
