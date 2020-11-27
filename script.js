@@ -32,7 +32,7 @@ const body = document.querySelector("body");
 
 //initial grid
 if (myCatches.length < 1) {
-  window.onload = adjustGrid(4, 4);
+  window.onload = adjustGrid(4, 1);
 }
 else {
   window.onload = adjustGrid(myCatches.length + 1, 3);
@@ -46,11 +46,7 @@ function adjustGrid(columns, rows) {
 
 //open form for user input
 addFish.addEventListener(("click"), () => {
-  body.className = "mainBlurred";
-
-  let formDiv = document.createElement("div");
-  formDiv.className = "form";
-  body.appendChild(formDiv);
+  
 })
 
 //      TEST

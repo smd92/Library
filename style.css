@@ -12,25 +12,6 @@ body {
     "content";
 }
 
-.mainBlurred {
-    filter: blur(2px);
-    z-index: 2;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-areas: 
-    ". . ."
-    ". form ."
-    ". . .";
-}
-
-.form {
-    z-index: 1;
-    width: 400px;
-    height: 400px;
-    grid-area: form;
-}
-
 .action {
     cursor: pointer;
     transform: scale(1);
@@ -83,6 +64,8 @@ body {
     line-height: 100%;
     width: 300px;
     height: 400px;
+    max-width: 80%;
+    max-height: 80%;
     border-radius: 20px;
     border: solid;
     display: grid;
@@ -179,4 +162,54 @@ body {
     width: 100%;
     text-align: center;
     grid-area: location;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    border-radius: 20px;
+    z-index: 10;
+    background-color: white;
+    width: 500px;
+    max-width: 80%;
+}
+
+.modal-header {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+
+.modal-header .modal-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-header .close-button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-body {
+    padding: 10px 15px;
+}
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color:rgba(0, 0, 0, .5);
+    pointer-events: none;
 }
