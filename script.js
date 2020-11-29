@@ -27,8 +27,10 @@ function addFishToCatches(sp, s, b, l, m) {
 // --- end of objects part
 
 const grid = document.querySelector("#grid");
-const addFish = document.querySelector("#addFish");
 const body = document.querySelector("body");
+const addFishButton = document.querySelector("#addFish");
+const closeModalButton = document.querySelector("#closeButton");
+const overlay = document.querySelector("#overlay");
 
 //initial grid
 if (myCatches.length < 1) {
@@ -44,10 +46,39 @@ function adjustGrid(columns, rows) {
   grid.style.setProperty("--rows", rows);
 }
 
+/* MODAL PART */
+
 //open form for user input
-addFish.addEventListener(("click"), () => {
-  
+addFishButton.addEventListener(("click"), () => {
+  const modal = document.querySelector("#modal");
+  openModal(modal);
 })
+
+overlay.addEventListener(("click"), () => {
+  const modals = document.querySelectorAll(".modal.active");
+  modals.forEach(modal => {
+    closeModal(modal);
+  })
+})
+
+closeModalButton.addEventListener(("click"), () => {
+  const modal = closeModalButton.closest(".modal");
+  closeModal(modal);
+})
+
+function openModal(modal) {
+  if (modal === null) return;
+  modal.classList.add("active");
+  overlay.classList.add("active");
+}
+
+function closeModal(modal) {
+  if (modal === null) return;
+  modal.classList.remove("active");
+  overlay.classList.remove("active");
+}
+
+/* END OF MODAL PART */
 
 //      TEST
 
@@ -116,6 +147,6 @@ function displayCatches() {
     newTile.appendChild(specSize);
     newTile.appendChild(baitMet);
     newTile.appendChild(location);
-    grid.insertBefore(newTile, addFish);
+    grid.insertBefore(newTile, addFishButton);
   })
 }
