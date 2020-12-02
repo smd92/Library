@@ -3,23 +3,24 @@
 let myCatches = [];
 
 //constructor function for new Fish objects
-function Fish(species, size, bait, location, method) {
+function Fish(species, size, bait, location, method, date) {
     this.species = species
     this.size = size + "cm";
     this.bait = bait
     this.location = location
     this.method = method
+    this.date = date
 }
 
 //info about the Fish
 Fish.prototype.info = function() {
     let infoArr = [];
-    infoArr.push(this.species, this.size, this.bait, this.location, this.method);
+    infoArr.push(this.species, this.size, this.bait, this.location, this.method, this.date);
     return infoArr.join(", ");
   }
 
-function addFishToCatches(sp, s, b, l, m) {
-  let newFish = new Fish(sp, s, b, l, m);
+function addFishToCatches(sp, s, b, l, m, d) {
+  let newFish = new Fish(sp, s, b, l, m, d);
   myCatches.push(newFish);
   return newFish;
 }
@@ -82,9 +83,9 @@ function closeModal(modal) {
 
 //      TEST
 
-let testOne = addFishToCatches("Bachforelle", "35", "Trockenfliege", "Mangfall", "Fliegenfischen");
-let testTwo = addFishToCatches("Döbel", "50", "Nymphe", "Inn", "Fliegenfischen");
-let testThree = addFishToCatches("Hecht", "82", "Gummifisch", "Tegernsee", "Schleppfischen");
+let testOne = addFishToCatches("Bachforelle", "35", "Trockenfliege", "Mangfall", "Fliegenfischen", "16.04.2020");
+let testTwo = addFishToCatches("Döbel", "50", "Nymphe", "Inn", "Fliegenfischen", "22.06.2020");
+let testThree = addFishToCatches("Hecht", "82", "Gummifisch", "Tegernsee", "Schleppfischen", "15.10.2020");
 
 //      END OF TEST
 
@@ -143,10 +144,16 @@ function displayCatches() {
     location.className = "location";
     location.textContent = item.location;
 
+    //create info row -> catch date
+    let date = document.createElement("p");
+    date.className = "date";
+    date.textContent = item.date;
+
     newTile.appendChild(edRe);
     newTile.appendChild(specSize);
     newTile.appendChild(baitMet);
     newTile.appendChild(location);
+    newTile.appendChild(date);
     grid.insertBefore(newTile, addFishButton);
   })
 }

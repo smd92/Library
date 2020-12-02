@@ -61,7 +61,6 @@ body {
 
 .fish {
     font-size: 40px;
-    line-height: 100%;
     width: 300px;
     height: 400px;
     max-width: 80%;
@@ -69,19 +68,20 @@ body {
     border-radius: 20px;
     border: solid;
     display: grid;
-    grid-template-rows: 20px 1fr 1fr 1fr;
+    grid-template-rows: 20px 1fr 1fr 1fr 60px;
     grid-template-areas: 
     "edRe"
     "specSize"
     "baitMet"
-    "location";
+    "location"
+    "date";
 }
 
 .edRe {
     font-size: 20px;
     line-height: 20px;
     display: grid;
-    grid-area: edRe;
+    grid-area: "edRe";
     grid-template-columns: 50% 50%;
     grid-template-areas:
     "edit remove";
@@ -94,7 +94,7 @@ body {
     height: 100%;
     border-top-left-radius: 17px;
     display: grid;
-    grid-area: edit;
+    grid-area: "edit";
     place-content: center;
 }
 
@@ -104,7 +104,7 @@ body {
     height: 100%;
     border-top-right-radius: 17px;
     display: grid;
-    grid-area: remove;
+    grid-area: "remove";
     place-content: center;
 }
 
@@ -114,7 +114,7 @@ body {
     width: 100%;
     font-size: 30px;
     display: grid;
-    grid-area: specSize;
+    grid-area: "specSize";
     grid-template-columns: 100%;
     grid-template-rows: 50px 50px;
     grid-template-areas: 
@@ -124,13 +124,13 @@ body {
 
 .species {
     width: 100%;
-    grid-area: species;
+    grid-area: "species";
     text-align: center;
 }
 
 .size {
     width: 100%;
-    grid-area: size;
+    grid-area: "size";
     text-align: center;
 }
 
@@ -139,7 +139,7 @@ body {
     margin-top: 20px;
     font-size: 20px;
     display: grid;
-    grid-area: baitMet;
+    grid-area: "baitMet";
     grid-template-rows: 20px 20px;
     grid-template-areas: 
     "bait"
@@ -149,19 +149,27 @@ body {
 .bait {
     width: 100%;
     text-align: center;
-    grid-area: bait;
+    grid-area: "bait";
 }
 
 .method {
     width: 100%;
     text-align: center;
-    grid-area: method;
+    grid-area: "method";
 }
 
 .location {
     width: 100%;
     text-align: center;
-    grid-area: location;
+    grid-area: "location";
+}
+
+.date {
+    width: 100%;
+    display: grid;
+    text-align: center;
+    grid-area: "date";
+    font-size: 20px;
 }
 
 /* MODAL PART */
