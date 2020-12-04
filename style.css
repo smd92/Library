@@ -237,3 +237,14 @@ body {
 }
 
 /* END OF MODAL PART */
+
+/* FORM PART */
+
+#submit {
+    text-align: center;
+    width: 150px;
+    cursor: pointer;
+    padding: 20px;
+    color: white;
+    background-color: rgb(17, 184, 100);
+}
