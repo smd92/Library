@@ -1,5 +1,4 @@
 // --- objects part ---
-
 let myCatches = [];
 
 //constructor function for new Fish objects
@@ -24,7 +23,6 @@ function addFishToCatches(sp, s, b, l, m, d) {
   myCatches.push(newFish);
   return newFish;
 }
-
 // --- end of objects part
 
 const grid = document.querySelector("#grid");
@@ -48,7 +46,6 @@ function adjustGrid(columns, rows) {
 }
 
 /* MODAL PART */
-
 //open form for user input
 addFishButton.addEventListener(("click"), () => {
   const modal = document.querySelector("#modal");
@@ -78,15 +75,13 @@ function closeModal(modal) {
   modal.classList.remove("active");
   overlay.classList.remove("active");
 }
-
 /* END OF MODAL PART */
 
 //      TEST
-
 let testOne = addFishToCatches("Bachforelle", "35", "Trockenfliege", "Mangfall", "Fliegenfischen", "16.04.2020");
 let testTwo = addFishToCatches("Döbel", "50", "Nymphe", "Inn", "Fliegenfischen", "22.06.2020");
 let testThree = addFishToCatches("Hecht", "82", "Gummifisch", "Tegernsee", "Schleppfischen", "15.10.2020");
-
+let testFour = addFishToCatches("Hecht", "82", "Gummifisch", "Tegernsee", "Schleppfischen", "15.10.2020");
 //      END OF TEST
 
 //display myCatches items on page
@@ -157,3 +152,33 @@ function displayCatches() {
     grid.insertBefore(newTile, addFishButton);
   })
 }
+
+//grab and process form data
+const submit = document.querySelector("#submit");
+
+submit.addEventListener(("click"), () => {
+  let species = document.querySelector("#fish_species").value;
+  let size = document.querySelector("#fish_size").value;
+  let bait = document.querySelector("#fish_bait").value;
+  let method = document.querySelector("#fish_method").value;
+  let location = document.querySelector("#fish_location").value;
+  let date = document.querySelector("#fish_date").value;
+
+  let dateArr = date.split("");
+  for (let i = 0; i < dateArr.length; i++) {
+    if (dateArr[i] === "-") {
+      dateArr.splice(i, 1);
+    }
+  }
+
+  //convert date format
+  let gerDateArr = [];
+  gerDateArr.push(dateArr[6], dateArr[7], ".", dateArr[4], dateArr[5], ".", dateArr[0], dateArr[1], dateArr[2], dateArr[3]);
+  let gerDate = gerDateArr.join("");
+  
+  addFishToCatches(species, size, bait, method, location, gerDate);
+  displayCatches();
+
+  const modal = closeModalButton.closest(".modal");
+  closeModal(modal);
+})
