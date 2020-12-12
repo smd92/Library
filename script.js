@@ -3,12 +3,13 @@ let myCatches = [];
 
 //constructor function for new Fish objects
 function Fish(species, size, bait, location, method, date) {
-    this.species = species
-    this.size = size + "cm";
+    this.species = species;
+    this.size = size + "cm"
     this.bait = bait
     this.location = location
     this.method = method
     this.date = date
+    this.index = myCatches.length
 }
 
 //info about the Fish
@@ -102,6 +103,7 @@ function displayCatches(item) {
 
   let remove = document.createElement("p");
   remove.className = "remove";
+  remove.id = item.index;
   remove.textContent = "Remove";
   edRe.appendChild(remove);
     
@@ -188,3 +190,13 @@ submit.addEventListener(("click"), () => {
 myCatches.forEach((item) => {
   displayCatches(item);
 })
+
+//remove buttons to delete items from myCatches array
+let removeBtns = document.getElementsByClassName("remove");
+
+for (let k = 0; k < removeBtns.length; k++) {
+  removeBtns[k].addEventListener(("click"), () => {
+    let index = removeBtns[k].id;
+    myCatches.splice(index, 1);
+  })
+}
