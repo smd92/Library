@@ -91,6 +91,7 @@ function displayCatches(item) {
   //create new tile
   let newTile = document.createElement("div");
   newTile.classList.add("fish", "action");
+  newTile.id = "tile" + item.index;
 
   //create edit and remove button
   let edRe = document.createElement("div");
@@ -191,12 +192,51 @@ myCatches.forEach((item) => {
   displayCatches(item);
 })
 
-//remove buttons to delete items from myCatches array
+//remove buttons to delete items from display myCatches array
 let removeBtns = document.getElementsByClassName("remove");
+let tiles = document.getElementsByClassName("fish");
 
 for (let k = 0; k < removeBtns.length; k++) {
   removeBtns[k].addEventListener(("click"), () => {
-    let index = removeBtns[k].id;
-    myCatches.splice(index, 1);
+    delObj(k);
+    delDOM(k);
+    console.log(k);
+    //let index = removeBtns[k].id;
+    //myCatches.splice(index, 1);
+
+    //let tileName = "#tile" + index;
+    //let rmvTile = document.querySelector(tileName);
+    //rmvTile.remove();
+
+    updateIndexes();
+    updateIDs();
   })
+}
+
+function delObj(index) {
+  myCatches.splice(index, 1);
+}
+
+function delDOM(index) {
+  let tileName = "#tile" + index;
+  console.log(tileName);
+  let rmvTile = document.querySelector(tileName);
+  rmvTile.remove();
+}
+
+//update indexes of fish objects
+function updateIndexes() {
+  myCatches.forEach((obj) => {
+    obj.index = myCatches.indexOf(obj);
+  })
+}
+
+//update IDs of fish tiles for proper DOM removal
+function updateIDs() {
+    for (let p = 0; p < tiles.length; p++) {
+      tiles[p].id = "tile" + p;
+    }
+    for (let q = 0; q < removeBtns.length; q++) {
+      removeBtns[q].id = q;
+    }
 }
