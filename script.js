@@ -198,18 +198,15 @@ let tiles = document.getElementsByClassName("fish");
 
 for (let k = 0; k < removeBtns.length; k++) {
   removeBtns[k].addEventListener(("click"), () => {
-    delObj(k);
-    delDOM(k);
-    console.log(k);
-    //let index = removeBtns[k].id;
-    //myCatches.splice(index, 1);
-
-    //let tileName = "#tile" + index;
-    //let rmvTile = document.querySelector(tileName);
-    //rmvTile.remove();
-
-    updateIndexes();
-    updateIDs();
+    let nodes = document.getElementsByClassName("remove");
+    for (let m = 0; m < nodes.length; m++) {
+      let index = nodes[m].id;
+      delObj(index);
+      delDOM(index);
+      updateIndexes();
+      updateIDs();
+      break;
+    }
   })
 }
 
@@ -219,7 +216,6 @@ function delObj(index) {
 
 function delDOM(index) {
   let tileName = "#tile" + index;
-  console.log(tileName);
   let rmvTile = document.querySelector(tileName);
   rmvTile.remove();
 }
