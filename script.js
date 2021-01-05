@@ -197,16 +197,12 @@ let removeBtns = document.getElementsByClassName("remove");
 let tiles = document.getElementsByClassName("fish");
 
 for (let k = 0; k < removeBtns.length; k++) {
-  removeBtns[k].addEventListener(("click"), () => {
-    let nodes = document.getElementsByClassName("remove");
-    for (let m = 0; m < nodes.length; m++) {
-      let index = nodes[m].id;
-      delObj(index);
-      delDOM(index);
-      updateIndexes();
-      updateIDs();
-      break;
-    }
+  removeBtns[k].addEventListener(("click"), (e) => {
+    let index = e.target.id;
+    delObj(index);
+    delDOM(index);
+    updateIndexes();
+    updateIDs();
   })
 }
 
@@ -235,4 +231,13 @@ function updateIDs() {
     for (let q = 0; q < removeBtns.length; q++) {
       removeBtns[q].id = q;
     }
+}
+
+//edit buttons
+let editBtns = document.getElementsByClassName("remove");
+
+for (let n = 0; n < editBtns.length; n++) {
+  editBtns[n].addEventListener(("click"), () => {
+    
+  })
 }
