@@ -234,10 +234,11 @@ function updateIDs() {
 }
 
 //edit buttons
-let editBtns = document.getElementsByClassName("remove");
+let editBtns = document.getElementsByClassName("edit");
 
 for (let n = 0; n < editBtns.length; n++) {
   editBtns[n].addEventListener(("click"), () => {
-    
+    const modal = document.querySelector("#modal");
+    openModal(modal);
   })
 }
