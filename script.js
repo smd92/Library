@@ -99,6 +99,7 @@ function displayCatches(item) {
 
   let edit = document.createElement("p");
   edit.className = "edit";
+  edit.id = item.index;
   edit.textContent = "Edit";
   edRe.appendChild(edit);
 
@@ -192,8 +193,9 @@ myCatches.forEach((item) => {
   displayCatches(item);
 })
 
-//remove buttons to delete items from display myCatches array
+//remove and edit buttons
 let removeBtns = document.getElementsByClassName("remove");
+let editBtns = document.getElementsByClassName("edit");
 let tiles = document.getElementsByClassName("fish");
 
 for (let k = 0; k < removeBtns.length; k++) {
@@ -231,14 +233,18 @@ function updateIDs() {
     for (let q = 0; q < removeBtns.length; q++) {
       removeBtns[q].id = q;
     }
+    for (let r = 0; r < editBtns.length; r++) {
+      editBtns[r].id = r;
+    }
 }
 
 //edit buttons
-let editBtns = document.getElementsByClassName("edit");
-
 for (let n = 0; n < editBtns.length; n++) {
-  editBtns[n].addEventListener(("click"), () => {
+  editBtns[n].addEventListener(("click"), (e) => {
     const modal = document.querySelector("#modal");
     openModal(modal);
+
+    let index = e.target.id;
+    let referenceObj = myCatches(index);
   })
 }
