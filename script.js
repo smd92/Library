@@ -91,7 +91,7 @@ function displayCatches(item) {
   //create new tile
   let newTile = document.createElement("div");
   newTile.classList.add("fish", "action");
-  newTile.id = "tile" + item.index;
+  newTile.id = item.index;
 
   //create edit and remove button
   let edRe = document.createElement("div");
@@ -99,13 +99,11 @@ function displayCatches(item) {
 
   let edit = document.createElement("p");
   edit.className = "edit";
-  edit.id = item.index;
   edit.textContent = "Edit";
   edRe.appendChild(edit);
 
   let remove = document.createElement("p");
   remove.className = "remove";
-  remove.id = item.index;
   remove.textContent = "Remove";
   edRe.appendChild(remove);
     
@@ -200,7 +198,7 @@ let tiles = document.getElementsByClassName("fish");
 
 for (let k = 0; k < removeBtns.length; k++) {
   removeBtns[k].addEventListener(("click"), (e) => {
-    let index = e.target.id;
+    let index = e.target.parentNode.parentNode.id;
     delObj(index);
     delDOM(index);
     updateIndexes();
@@ -213,8 +211,7 @@ function delObj(index) {
 }
 
 function delDOM(index) {
-  let tileName = "#tile" + index;
-  let rmvTile = document.querySelector(tileName);
+  let rmvTile = document.getElementById(index);
   rmvTile.remove();
 }
 
@@ -228,13 +225,7 @@ function updateIndexes() {
 //update IDs of fish tiles for proper DOM removal
 function updateIDs() {
     for (let p = 0; p < tiles.length; p++) {
-      tiles[p].id = "tile" + p;
-    }
-    for (let q = 0; q < removeBtns.length; q++) {
-      removeBtns[q].id = q;
-    }
-    for (let r = 0; r < editBtns.length; r++) {
-      editBtns[r].id = r;
+      tiles[p].id = p;
     }
 }
 
@@ -244,7 +235,7 @@ for (let n = 0; n < editBtns.length; n++) {
     const modal = document.querySelector("#modal");
     openModal(modal);
 
-    let index = e.target.id;
+    let index = e.target.parentNode.parentNode.id;
     let referenceObj = myCatches(index);
   })
 }
