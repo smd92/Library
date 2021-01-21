@@ -236,6 +236,12 @@ for (let n = 0; n < editBtns.length; n++) {
     openModal(modal);
 
     let index = e.target.parentNode.parentNode.id;
-    let referenceObj = myCatches(index);
+    setPlaceholders(index);
   })
+}
+
+function setPlaceholders(index) {
+  let refObj = myCatches[index];
+  let species = document.querySelector("#fish_species");
+  species.setAttribute("placeholder", refObj.species);
 }
