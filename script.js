@@ -236,12 +236,22 @@ for (let n = 0; n < editBtns.length; n++) {
     openModal(modal);
 
     let index = e.target.parentNode.parentNode.id;
-    setPlaceholders(index);
+    setInput(index);
   })
 }
 
-function setPlaceholders(index) {
+function setInput(index) {
   let refObj = myCatches[index];
   let species = document.querySelector("#fish_species");
-  species.setAttribute("placeholder", refObj.species);
+  let size = document.querySelector("#fish_size");
+  let bait = document.querySelector("#fish_bait");
+  let method = document.querySelector("#fish_method");
+  let location = document.querySelector("#fish_location");
+  let date = document.querySelector("#fish_date");
+  species.value = refObj.species;
+  size.value = refObj.size;
+  bait.value = refObj.bait;
+  method.value = refObj.method;
+  location.value = refObj.location;
+  date.value = refObj.date;
 }
