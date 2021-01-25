@@ -2,14 +2,15 @@
 let myCatches = [];
 
 //constructor function for new Fish objects
-function Fish(species, size, bait, location, method, date) {
+function Fish(species, size, bait, location, method, gerDate, date) {
     this.species = species;
     this.size = size + "cm"
     this.bait = bait
     this.location = location
     this.method = method
-    this.date = date
+    this.gerDate = gerDate
     this.index = myCatches.length
+    this.date = date;
 }
 
 //info about the Fish
@@ -19,8 +20,8 @@ Fish.prototype.info = function() {
     return infoArr.join(", ");
   }
 
-function addFishToCatches(sp, s, b, l, m, d) {
-  let newFish = new Fish(sp, s, b, l, m, d);
+function addFishToCatches(sp, s, b, l, m, gd, d) {
+  let newFish = new Fish(sp, s, b, l, m, gd, d);
   myCatches.push(newFish);
   return newFish;
 }
@@ -80,9 +81,9 @@ function closeModal(modal) {
 /* END OF MODAL PART */
 
 //      TEST
-let testOne = addFishToCatches("Bachforelle", "35", "Trockenfliege", "Mangfall", "Fliegenfischen", "16.04.2020");
-let testTwo = addFishToCatches("Döbel", "50", "Nymphe", "Inn", "Fliegenfischen", "22.06.2020");
-let testThree = addFishToCatches("Hecht", "82", "Gummifisch", "Tegernsee", "Schleppfischen", "15.10.2020");
+let testOne = addFishToCatches("Bachforelle", "35", "Trockenfliege", "Mangfall", "Fliegenfischen", "16.04.2020", "2020-04-16");
+let testTwo = addFishToCatches("Döbel", "50", "Nymphe", "Inn", "Fliegenfischen", "22.06.2020", "2020-06-22");
+let testThree = addFishToCatches("Hecht", "82", "Gummifisch", "Tegernsee", "Schleppfischen", "15.10.2020", "2020-10-15");
 //      END OF TEST
 
 //display myCatches items on page
@@ -101,11 +102,13 @@ function displayCatches(item) {
   edit.className = "edit";
   edit.textContent = "Edit";
   edRe.appendChild(edit);
+  addEditEvent(edit);
 
   let remove = document.createElement("p");
   remove.className = "remove";
   remove.textContent = "Remove";
   edRe.appendChild(remove);
+  addRemoveEvent(remove);
     
   //create content-body -> species, size
   let specSize = document.createElement("div");
@@ -143,7 +146,7 @@ function displayCatches(item) {
   //create info row -> catch date
   let date = document.createElement("p");
   date.className = "date";
-  date.textContent = item.date;
+  date.textContent = item.gerDate;
 
   newTile.appendChild(edRe);
   newTile.appendChild(specSize);
@@ -163,7 +166,7 @@ submit.addEventListener(("click"), () => {
   let method = document.querySelector("#fish_method").value;
   let location = document.querySelector("#fish_location").value;
   let date = document.querySelector("#fish_date").value;
-
+  
   let dateArr = date.split("");
   for (let i = 0; i < dateArr.length; i++) {
     if (dateArr[i] === "-") {
@@ -176,7 +179,7 @@ submit.addEventListener(("click"), () => {
   gerDateArr.push(dateArr[6], dateArr[7], ".", dateArr[4], dateArr[5], ".", dateArr[0], dateArr[1], dateArr[2], dateArr[3]);
   let gerDate = gerDateArr.join("");
   
-  addFishToCatches(species, size, bait, location, method, gerDate);
+  addFishToCatches(species, size, bait, location, method, gerDate, date);
 
   //display the newly created object
   let indexNew = myCatches.length - 1;
@@ -196,8 +199,8 @@ let removeBtns = document.getElementsByClassName("remove");
 let editBtns = document.getElementsByClassName("edit");
 let tiles = document.getElementsByClassName("fish");
 
-for (let k = 0; k < removeBtns.length; k++) {
-  removeBtns[k].addEventListener(("click"), (e) => {
+function addRemoveEvent(element) {
+  element.addEventListener(("click"), (e) => {
     let index = e.target.parentNode.parentNode.id;
     delObj(index);
     delDOM(index);
@@ -230,11 +233,10 @@ function updateIDs() {
 }
 
 //edit buttons
-for (let n = 0; n < editBtns.length; n++) {
-  editBtns[n].addEventListener(("click"), (e) => {
+function addEditEvent(element) {
+  element.addEventListener(("click"), (e) => {
     const modal = document.querySelector("#modal");
     openModal(modal);
-
     let index = e.target.parentNode.parentNode.id;
     setInput(index);
   })
