@@ -4,7 +4,7 @@ let myCatches = [];
 //constructor function for new Fish objects
 function Fish(species, size, bait, location, method, gerDate, date) {
     this.species = species;
-    this.size = size + "cm"
+    this.size = size
     this.bait = bait
     this.location = location
     this.method = method
@@ -81,9 +81,9 @@ function closeModal(modal) {
 /* END OF MODAL PART */
 
 //      TEST
-let testOne = addFishToCatches("Bachforelle", "35", "Trockenfliege", "Mangfall", "Fliegenfischen", "16.04.2020", "2020-04-16");
-let testTwo = addFishToCatches("Döbel", "50", "Nymphe", "Inn", "Fliegenfischen", "22.06.2020", "2020-06-22");
-let testThree = addFishToCatches("Hecht", "82", "Gummifisch", "Tegernsee", "Schleppfischen", "15.10.2020", "2020-10-15");
+let testOne = addFishToCatches("Bachforelle", "35cm", "Trockenfliege", "Mangfall", "Fliegenfischen", "16.04.2020", "2020-04-16");
+let testTwo = addFishToCatches("Döbel", "50cm", "Nymphe", "Inn", "Fliegenfischen", "22.06.2020", "2020-06-22");
+let testThree = addFishToCatches("Hecht", "82cm", "Gummifisch", "Tegernsee", "Schleppfischen", "15.10.2020", "2020-10-15");
 //      END OF TEST
 
 //display myCatches items on page
