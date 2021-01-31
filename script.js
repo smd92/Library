@@ -59,12 +59,14 @@ overlay.addEventListener(("click"), () => {
   const modals = document.querySelectorAll(".modal.active");
   modals.forEach(modal => {
     closeModal(modal);
+    clearModal();
   })
 })
 
 closeModalButton.addEventListener(("click"), () => {
   const modal = closeModalButton.closest(".modal");
   closeModal(modal);
+  clearModal();
 })
 
 function openModal(modal) {
@@ -77,6 +79,23 @@ function closeModal(modal) {
   if (modal === null) return;
   modal.classList.remove("active");
   overlay.classList.remove("active");
+}
+
+function clearModal() {
+  let modalTitle = document.querySelector(".modal-title");
+  let species = document.querySelector("#fish_species");
+  let size = document.querySelector("#fish_size");
+  let bait = document.querySelector("#fish_bait");
+  let method = document.querySelector("#fish_method");
+  let location = document.querySelector("#fish_location");
+  let date = document.querySelector("#fish_date");
+  species.value = "";
+  size.value = "";
+  bait.value = "";
+  method.value = "";
+  location.value = "";
+  date.value = "";
+  modalTitle.textContent = "Add new fish";
 }
 /* END OF MODAL PART */
 
@@ -239,6 +258,8 @@ function addEditEvent(element) {
     openModal(modal);
     let index = e.target.parentNode.parentNode.id;
     setInput(index);
+    let modalTitle = document.querySelector(".modal-title");
+    modalTitle.textContent = "Edit Fish";
   })
 }
 
