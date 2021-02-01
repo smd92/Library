@@ -89,6 +89,8 @@ function clearModal() {
   let method = document.querySelector("#fish_method");
   let location = document.querySelector("#fish_location");
   let date = document.querySelector("#fish_date");
+  let submitBtn = document.querySelector("#submit");
+
   species.value = "";
   size.value = "";
   bait.value = "";
@@ -96,6 +98,7 @@ function clearModal() {
   location.value = "";
   date.value = "";
   modalTitle.textContent = "Add new fish";
+  submitBtn.classList.remove(submitBtn.className);
 }
 /* END OF MODAL PART */
 
@@ -256,10 +259,15 @@ function addEditEvent(element) {
   element.addEventListener(("click"), (e) => {
     const modal = document.querySelector("#modal");
     openModal(modal);
+
     let index = e.target.parentNode.parentNode.id;
     setInput(index);
+
     let modalTitle = document.querySelector(".modal-title");
     modalTitle.textContent = "Edit Fish";
+    
+    let submitBtn = document.querySelector("#submit");
+    submitBtn.classList.add(index);
   })
 }
 
@@ -278,3 +286,8 @@ function setInput(index) {
   location.value = refObj.location;
   date.value = refObj.date;
 }
+
+//edit event -> submitbutton bekommt klasse id/index
+//submitbutton on click ruft funktion auf mit parameter klasse/index
+//wenn parameter undefined, dann wird neues objekt angelegt und angezeigt
+//wenn parameter definiert, dann wird bestehendes objekt geändert
