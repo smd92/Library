@@ -18,45 +18,47 @@
     <!-- MODAL PART -->
     <div id = "modal" class = "modal">
       <div class = "modal-header">
-        <div class = "modal-title">Add new fish</div>
+        <div class = "modal-title">Fang eintragen</div>
         <button id = "closeButton" class = "close-button">&times;</button>
       </div>
       <div class = "modal-body">
         <form action="#" method="post">
           <ul>
            <li>
-             <label for="species">Species</label>
+             <label for="species">Art</label>
              <input type="text" id="fish_species" name="fish_species">
            </li>
            <li>
-             <label for="size">Size</label>
+             <label for="size">Größe</label>
              <input type="text" id="fish_size" name="fish_size">
            </li>
            <li>
-             <label for="bait">Bait</label>
-             <input type="text" id="fish_bait"></input>
+             <label for="bait">Köder</label>
+             <input type="text" id="fish_bait" name="fish_bait">
            </li>
            <li>
-            <label for="method">Method</label>
-            <input type="text" id="fish_method"></input>
+            <label for="method">Methode</label>
+            <input type="text" id="fish_method" name = "fish_method">
           </li>
           <li>
-            <label for="location">Location</label>
-            <input type="text" id="fish_location"></input>
+            <label for="location">Gewässer</label>
+            <input type="text" id="fish_location" name = "fish_location">
           </li>
           <li>
-            <label for="date">Date</label>
-            <input type="date" id="fish_date"></input>
+            <label for="date">Datum</label>
+            <input type="date" id="fish_date" name = "fish_date">
           </li>
+            <li>
+              <label for="notes">Notizen</label>
+              <input type="text" id="fish_notes" name="fish_notes">
+            </li>
           </ul>
-          <p id = "submit">SUBMIT</p>
+          <p id ="submit">EINTRAGEN</p>
          </form>
       </div>
     </div>
     <div id = "overlay"></div>
     <!-- END OF MODAL PART -->
-  </div>
-    
   <script type="text/javascript" src="script.js"></script>
 </body>
 </html>

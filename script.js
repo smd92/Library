@@ -2,15 +2,16 @@
 let myCatches = [];
 
 //constructor function for new Fish objects
-function Fish(species, size, bait, location, method, gerDate, date) {
-  this.species = species;
+function Fish(species, size, bait, location, method, gerDate, date, notes) {
+  this.species = species
   this.size = size
   this.bait = bait
   this.location = location
   this.method = method
   this.gerDate = gerDate
   this.index = myCatches.length
-  this.date = date;
+  this.date = date
+  this.notes = notes
 }
 
 //info about the Fish
@@ -20,13 +21,13 @@ Fish.prototype.info = function() {
   return infoArr.join(", ");
 }
 
-function addFishToCatches(sp, s, b, l, m, gd, d) {
-  let newFish = new Fish(sp, s, b, l, m, gd, d);
+function addFishToCatches(sp, s, b, l, m, gd, d, n) {
+  let newFish = new Fish(sp, s, b, l, m, gd, d, n);
   myCatches.push(newFish);
   return newFish;
 }
 
-function editFish(species, size, bait, location, method, gerDate, date, index) {
+function editFish(species, size, bait, location, method, gerDate, date, notes, index) {
   let fish = myCatches[index];
   fish.species = species;
   fish.size = size;
@@ -35,6 +36,7 @@ function editFish(species, size, bait, location, method, gerDate, date, index) {
   fish.method = method;
   fish.gerDate = gerDate;
   fish.date = date;
+  fish.notes = notes;
 }
 // --- end of objects part
 
@@ -100,6 +102,7 @@ function clearModal() {
   let method = document.querySelector("#fish_method");
   let location = document.querySelector("#fish_location");
   let date = document.querySelector("#fish_date");
+  let notes = document.querySelector("#fish_notes");
   let submitBtn = document.querySelector("#submit");
 
   species.value = "";
@@ -108,15 +111,16 @@ function clearModal() {
   method.value = "";
   location.value = "";
   date.value = "";
-  modalTitle.textContent = "Add new fish";
+  notes.value = "";
+  modalTitle.textContent = "Fang hinzufügen";
   if (submitBtn.className != "") submitBtn.classList.remove(submitBtn.className);
 }
 /* END OF MODAL PART */
 
 //      TEST
-let testOne = addFishToCatches("Bachforelle", "35cm", "Trockenfliege", "Mangfall", "Fliegenfischen", "16.04.2020", "2020-04-16");
-let testTwo = addFishToCatches("Döbel", "50cm", "Nymphe", "Inn", "Fliegenfischen", "22.06.2020", "2020-06-22");
-let testThree = addFishToCatches("Hecht", "82cm", "Gummifisch", "Tegernsee", "Schleppfischen", "15.10.2020", "2020-10-15");
+let testOne = addFishToCatches("Bachforelle", "35cm", "Trockenfliege", "Mangfall", "Fliegenfischen", "16.04.2020", "2020-04-16", "Bafo");
+let testTwo = addFishToCatches("Döbel", "50cm", "Nymphe", "Inn", "Fliegenfischen", "22.06.2020", "2020-06-22", "Aitel");
+let testThree = addFishToCatches("Hecht", "82cm", "Gummifisch", "Tegernsee", "Schleppfischen", "15.10.2020", "2020-10-15", "Esox");
 //      END OF TEST
 
 //display myCatches items on page
@@ -133,13 +137,13 @@ function displayCatches(item) {
 
   let edit = document.createElement("p");
   edit.className = "edit";
-  edit.textContent = "Edit";
+  edit.textContent = "Bearbeiten";
   edRe.appendChild(edit);
   addEditEvent(edit);
 
   let remove = document.createElement("p");
   remove.className = "remove";
-  remove.textContent = "Remove";
+  remove.textContent = "Entfernen";
   edRe.appendChild(remove);
   addRemoveEvent(remove);
 
@@ -192,26 +196,39 @@ function displayCatches(item) {
 function editTile(tileID) {
   let tile = document.getElementById(tileID);
   let tileChildren = tile.childNodes;
-  console.log(tileChildren);
+ 
+  let species = tileChildren[1].childNodes[0];
+  let size = tileChildren[1].childNodes[1];
+  let bait = tileChildren[2].childNodes[0];
+  let method = tileChildren[2].childNodes[1];
+  let location = tileChildren[3];
+  let gerDate = tileChildren[4];
+ 
+  let refObj = myCatches[tileID];
+  species.textContent = refObj.species;
+  size.textContent = refObj.size;
+  bait.textContent = refObj.bait;
+  method.textContent = refObj.method;
+  location.textContent = refObj.location;
+  gerDate.textContent = refObj.gerDate;
 }
 
-//NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU
 //grab and process form data
-function processFormData(species, size, bait, location, method, gerDate, date, submitClass) {
+function processFormData(species, size, bait, location, method, gerDate, date, notes, submitClass) {
   //create and display new object
   if (submitClass === "new") {
-    addFishToCatches(species, size, bait, location, method, gerDate, date);
+    addFishToCatches(species, size, bait, location, method, gerDate, date, notes);
     let indexNew = myCatches.length - 1;
     displayCatches(myCatches[indexNew]);
   } else if (submitClass != "new") {
-    editFish(species, size, bait, location, method, gerDate, date, submitClass);
+    editFish(species, size, bait, location, method, gerDate, date, notes, submitClass);
     editTile(submitClass);
   }
 
   const modal = closeModalButton.closest(".modal");
   closeModal(modal);
 }
-//NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU
+
 const submit = document.querySelector("#submit");
 
 submit.addEventListener(("click"), (e) => {
@@ -221,6 +238,7 @@ submit.addEventListener(("click"), (e) => {
   let method = document.querySelector("#fish_method").value;
   let location = document.querySelector("#fish_location").value;
   let date = document.querySelector("#fish_date").value;
+  let notes = document.querySelector("#fish_notes").value;
   let submitClass = e.target.className;
 
   let dateArr = date.split("");
@@ -234,8 +252,8 @@ submit.addEventListener(("click"), (e) => {
   let gerDateArr = [];
   gerDateArr.push(dateArr[6], dateArr[7], ".", dateArr[4], dateArr[5], ".", dateArr[0], dateArr[1], dateArr[2], dateArr[3]);
   let gerDate = gerDateArr.join("");
-  //NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU NEU
-  processFormData(species, size, bait, location, method, gerDate, date, submitClass);
+
+  processFormData(species, size, bait, location, method, gerDate, date, notes, submitClass);
 })
 
 //display array items by default
@@ -291,7 +309,7 @@ function addEditEvent(element) {
     setInput(index);
 
     let modalTitle = document.querySelector(".modal-title");
-    modalTitle.textContent = "Edit Fish";
+    modalTitle.textContent = "Fang bearbeiten";
 
     let submitBtn = document.querySelector("#submit");
     submitBtn.classList.add(index);
@@ -306,13 +324,15 @@ function setInput(index) {
   let method = document.querySelector("#fish_method");
   let location = document.querySelector("#fish_location");
   let date = document.querySelector("#fish_date");
+  let notes = document.querySelector("#fish_notes");
   species.value = refObj.species;
   size.value = refObj.size;
   bait.value = refObj.bait;
   method.value = refObj.method;
   location.value = refObj.location;
   date.value = refObj.date;
+  notes.value = refObj.notes;
 }
 
-//finish editTile
-//finish localStorage
+//finish localStorage -> save if new object created or existing object edited
+//finish modal "Notizen"

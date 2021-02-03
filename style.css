@@ -31,7 +31,7 @@ body {
     grid-area: header;
     align-items: center;
 }
-    
+   
 #descr {
     margin-left: 50px;
 }
@@ -64,7 +64,7 @@ body {
     border: solid;
     display: grid;
     grid-template-rows: 20px 1fr 1fr 1fr 60px;
-    grid-template-areas: 
+    grid-template-areas:
     "edRe"
     "specSize"
     "baitMet"
@@ -112,7 +112,7 @@ body {
     grid-area: "specSize";
     grid-template-columns: 100%;
     grid-template-rows: 50px 50px;
-    grid-template-areas: 
+    grid-template-areas:
     "species"
     "size";
 }
@@ -136,7 +136,7 @@ body {
     display: grid;
     grid-area: "baitMet";
     grid-template-rows: 20px 20px;
-    grid-template-areas: 
+    grid-template-areas:
     "bait"
     "method";
 }
