@@ -117,11 +117,22 @@ function clearModal() {
 }
 /* END OF MODAL PART */
 
+//save/retrieve catches to/from localStorage
+function storeCatches() {
+  localStorage.setItem("myCatches", JSON.stringify(myCatches));
+}
+
+function retrieveCatches() {
+  myCatches = JSON.parse(localStorage.getItem("myCatches"));
+}
+
 //      TEST
+/*
 let testOne = addFishToCatches("Bachforelle", "35cm", "Trockenfliege", "Mangfall", "Fliegenfischen", "16.04.2020", "2020-04-16", "Bafo");
 let testTwo = addFishToCatches("Döbel", "50cm", "Nymphe", "Inn", "Fliegenfischen", "22.06.2020", "2020-06-22", "Aitel");
 let testThree = addFishToCatches("Hecht", "82cm", "Gummifisch", "Tegernsee", "Schleppfischen", "15.10.2020", "2020-10-15", "Esox");
 //      END OF TEST
+*/
 
 //display myCatches items on page
 function displayCatches(item) {
@@ -227,6 +238,8 @@ function processFormData(species, size, bait, location, method, gerDate, date, n
 
   const modal = closeModalButton.closest(".modal");
   closeModal(modal);
+
+  storeCatches();
 }
 
 const submit = document.querySelector("#submit");
@@ -256,6 +269,8 @@ submit.addEventListener(("click"), (e) => {
   processFormData(species, size, bait, location, method, gerDate, date, notes, submitClass);
 })
 
+//retrieve catches from localStorage
+retrieveCatches();
 //display array items by default
 myCatches.forEach((item) => {
   displayCatches(item);
@@ -333,6 +348,3 @@ function setInput(index) {
   date.value = refObj.date;
   notes.value = refObj.notes;
 }
-
-//finish localStorage -> save if new object created or existing object edited
-//finish modal "Notizen"
