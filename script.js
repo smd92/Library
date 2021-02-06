@@ -123,7 +123,9 @@ function storeCatches() {
 }
 
 function retrieveCatches() {
-  myCatches = JSON.parse(localStorage.getItem("myCatches"));
+  if (localStorage.length > 0) {
+    myCatches = JSON.parse(localStorage.getItem("myCatches"));
+  }
 }
 
 //      TEST
@@ -272,9 +274,11 @@ submit.addEventListener(("click"), (e) => {
 //retrieve catches from localStorage
 retrieveCatches();
 //display array items by default
-myCatches.forEach((item) => {
-  displayCatches(item);
-})
+if (myCatches.length > 0) {
+  myCatches.forEach((item) => {
+    displayCatches(item);
+  })
+}
 
 //remove and edit buttons
 let removeBtns = document.getElementsByClassName("remove");
@@ -288,6 +292,7 @@ function addRemoveEvent(element) {
     delDOM(index);
     updateIndexes();
     updateIDs();
+    storeCatches();
   })
 }
 
