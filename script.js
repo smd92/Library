@@ -2,23 +2,18 @@
 let myCatches = [];
 
 //constructor function for new Fish objects
-function Fish(species, size, bait, location, method, gerDate, date, notes) {
-  this.species = species
-  this.size = size
-  this.bait = bait
-  this.location = location
-  this.method = method
-  this.gerDate = gerDate
-  this.index = myCatches.length
-  this.date = date
-  this.notes = notes
-}
-
-//info about the Fish
-Fish.prototype.info = function() {
-  let infoArr = [];
-  infoArr.push(this.species, this.size, this.bait, this.location, this.method, this.date);
-  return infoArr.join(", ");
+class Fish {
+  constructor(species, size, bait, location, method, gerDate, date, notes) {
+    this.species = species
+    this.size = size
+    this.bait = bait
+    this.location = location
+    this.method = method
+    this.gerDate = gerDate
+    this.index = myCatches.length
+    this.date = date
+    this.notes = notes
+  }
 }
 
 function addFishToCatches(sp, s, b, l, m, gd, d, n) {
